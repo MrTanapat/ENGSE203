@@ -9,3 +9,12 @@
 * มีคำสั่งและโค้ดแบบ copy-paste ให้ครบถ้วน
 * ครอบคลุมการสร้าง repository, branching, merging, และแก้ไข conflicts
 * ใช้โปรเจกต์ portfolio website ที่เข้าใจง่าย
+
+# [TASK2: Portfolio Website Development (Part1 - Individual)](https://github.com/MrTanapat/Tanapat-portfolio-website.github.io)
+## HTML5 & CSS3 Fundamentals
+
+### 🎯 Lab Objectives
+* เข้าใจโครงสร้างและ Semantic HTML5
+* ใช้งาน CSS3 สำหรับ Layout และ Styling
+* สร้าง Responsive Design
+* ฝึกการใช้งาน Git สำหรับ Version Control
