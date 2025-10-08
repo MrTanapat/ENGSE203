@@ -5,6 +5,40 @@ function ProductCard({ product, onAddToCart, onViewDetails }) {
   const hasDiscount =
     product.originalPrice && product.originalPrice > product.price;
 
+  const renderStars = (rating) => {
+    const fullStars = Math.floor(rating); // ดาวเต็ม
+    const halfStar = rating % 1 >= 0.5 ? 1 : 0; // ครึ่งดาว
+    const emptyStars = 5 - fullStars - halfStar; // ดาวว่าง
+
+    const stars = [];
+
+    for (let i = 0; i < fullStars; i++) {
+      stars.push(
+        <span key={`full-${i}`} className="star">
+          ★
+        </span>
+      );
+    }
+
+    if (halfStar) {
+      stars.push(
+        <span key="half" className="star">
+          ☆
+        </span>
+      );
+    }
+
+    for (let i = 0; i < emptyStars; i++) {
+      stars.push(
+        <span key={`empty-${i}`} className="star">
+          ☆
+        </span>
+      );
+    }
+
+    return stars;
+  };
+
   return (
     <div className="product-card">
       <div className="product-image">
@@ -26,6 +60,10 @@ function ProductCard({ product, onAddToCart, onViewDetails }) {
         <p className="product-description">{product.description}</p>
 
         {/* TODO: นักศึกษาจะเพิ่ม rating stars ในส่วน Challenge */}
+        <div className="product-rating">
+          {renderStars(product.rating)}{" "}
+          <span className="rating-number">({product.rating.toFixed(1)})</span>
+        </div>
         <div className="product-price">
           {hasDiscount && (
             <span className="original-price">
