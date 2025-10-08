@@ -1,0 +1,299 @@
+/* ProfileCard.css - พื้นฐาน นักศึกษาจะปรับปรุงเพิ่มเติม */
+.profile-card {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  font-family: 'Arial', sans-serif;
+  position: relative;
+}
+
+.profile-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.profile-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin: 0 auto 15px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  color: #667eea;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.profile-name {
+  margin: 10px 0;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.student-id {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 5px 15px;
+  border-radius: 20px;
+  display: inline-block;
+  font-size: 14px;
+}
+
+.profile-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.info-item {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.info-label {
+  font-size: 12px;
+  opacity: 0.8;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.info-value {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.profile-section {
+  margin: 20px 0;
+}
+
+.profile-section h3 {
+  font-size: 18px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hobbies-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.hobby-item {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 6px 12px;
+  border-radius: 15px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.hobby-item:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.skills {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+}
+
+.skill-tag {
+  background: rgba(255, 255, 255, 0.25);
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.skill-tag:hover {
+  background: rgba(255, 255, 255, 0.4);
+  transform: scale(1.05);
+}
+
+.contact-button {
+  width: 100%;
+  padding: 12px;
+  background: #fff;
+  color: #667eea;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+}
+
+.contact-button:hover {
+  background: #f0f0f0;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .profile-card {
+    margin: 10px;
+    padding: 20px;
+  }
+  
+  .profile-info {
+    grid-template-columns: 1fr;
+  }
+  
+  .skills {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ส่วนที่นักศึกษาจะต้องเพิ่มเติม:
+- Theme toggle button styles
+- Social media links styles  
+- Achievement badges styles
+- Animation keyframes
+- Dark mode variant styles
+*/
+
+.social-links {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.social-link {
+  background: rgba(255, 255, 255, 0.25);
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  color: white;
+  text-decoration: none;
+}
+
+.social-link:hover {
+  background: rgba(255, 255, 255, 0.4);
+  transform: scale(1.05);
+}
+
+.achievements {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.achievement-badge {
+    background: rgba(255, 255, 255, 0.25);
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    color: white;
+    text-decoration: none;
+}
+
+.achievement-badge:hover {
+  background: rgba(255, 255, 255, 0.4);
+  transform: scale(1.05);
+}
+
+/* 🔘 ปุ่มสลับโหมด */
+.toggle-theme {
+  background-color: #444;
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.toggle-theme:hover {
+  background-color: #666;
+}
+
+/* 🌙 Dark Mode Theme */
+.profile-card.dark-mode {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+  color: white;
+  font-family: 'Arial', sans-serif;
+  position: relative;
+}
+
+.profile-card.dark-mode .skill-tag {
+  background-color: #333;
+  color: #fff;
+}
+
+.profile-card.dark-mode .social-link {
+  background-color: #333;
+  color: #fff;
+}
+.view-counter {
+  text-align: left;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.contact-form {
+  margin-top: 20px;
+}
+
+.contact-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-family: inherit;
+}
+
+.contact-form button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  background: #0077ff;
+  color: #fff;
+  cursor: pointer;
+}
+
+.contact-form button:hover {
+  background: #0055cc;
+}
