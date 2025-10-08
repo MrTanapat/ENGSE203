@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1696678400001,
+    "name": "Tanapat Nukool",
+    "email": "tanapat@example.com",
+    "phone": "0891234567",
+    "company": "RMUTL Lanna",
+    "subject": "สอบถามเกี่ยวกับโปรเจค",
+    "message": "สวัสดีครับ ผมอยากสอบถามเกี่ยวกับการส่งโปรเจคในวิชา Software Engineering",
+    "createdAt": "2025-10-01T10:00:00.000Z"
+  },
+  {
+    "id": 1696678400002,
+    "name": "Nicha S.",
+    "email": "nicha.s@example.com",
+    "phone": "0812345678",
+    "company": "",
+    "subject": "ข้อเสนอแนะเว็บไซต์",
+    "message": "เว็บไซต์ใช้งานง่ายมากครับ แต่ผมคิดว่าถ้าสามารถปรับสีปุ่มให้ชัดขึ้นจะดี",
+    "createdAt": "2025-10-02T15:30:00.000Z"
+  },
+  {
+    "id": 1696678400003,
+    "name": "Somchai T.",
+    "email": "somchai.t@example.com",
+    "phone": "0869876543",
+    "company": "บริษัท ABC",
+    "subject": "สอบถามราคา",
+    "message": "รบกวนสอบถามราคาคอร์สเรียน JavaScript ด้วยครับ",
+    "createdAt": "2025-10-03T08:45:00.000Z"
+  },
+  {
+    "id": 1759910155305,
+    "name": "ธนภัทร นุกูล",
+    "email": "tan.tanapat2002@gmail.com",
+    "phone": "0644571712",
+    "company": "RMUTL",
+    "subject": "ทดสอบ",
+    "message": "ทดสอบ Contact form validation",
+    "createdAt": "2025-10-08T07:55:55.305Z"
+  }
+]
