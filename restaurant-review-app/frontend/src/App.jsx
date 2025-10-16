@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import RestaurantList from "./components/RestaurantList";
 import RestaurantDetail from "./components/RestaurantDetail";
 import "./App.css";
@@ -6,13 +6,14 @@ import "./App.css";
 function App() {
   const [selectedRestaurantId, setSelectedRestaurantId] = useState(null);
 
-  const handleSelectRestaurant = (id) => {
+  // ทำให้ callback stable
+  const handleSelectRestaurant = useCallback((id) => {
     setSelectedRestaurantId(id);
-  };
+  }, []);
 
-  const handleBack = () => {
+  const handleBack = useCallback(() => {
     setSelectedRestaurantId(null);
-  };
+  }, []);
 
   return (
     <div className="app">
