@@ -26,19 +26,19 @@
 ## วิธีติดตั้งและรัน
 
 ### Backend
-\`\`\`bash
+```bash
 cd backend
 npm install
 cp .env.example .env
 npm run dev
-\`\`\`
+```
 
 ### Frontend
-\`\`\`bash
+```bash
 cd frontend
 npm install
 npm run dev
-\`\`\`
+```
 
 ## API Endpoints
 - GET `/api/restaurants` - ดึงรายการร้านทั้งหมด
