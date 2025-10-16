@@ -1,69 +1,46 @@
-# Restaurant Review Website
+#### ทดสอบ Frontend
 
-## รายละเอียดโปรเจค
-เว็บไซต์สำหรับค้นหาและรีวิวร้านอาหาร ผู้ใช้สามารถดูรายการร้าน, ค้นหา, กรอง, ดูรายละเอียดร้าน และเพิ่มรีวิวได้แบบเรียลไทม์
-
-## เทคโนโลยีที่ใช้
-- Frontend: React 18 + Vite
-- Backend: Node.js + Express
-- Database: JSON File Storage
-
-## Features ที่ทำได้
-### Required Features (70 คะแนน)
-- [x] แสดงรายการร้านอาหาร
-- [x] ค้นหาร้าน
-- [x] กรองตามหมวด/rating/ราคา
-- [x] ดูรายละเอียดร้าน
-- [x] เพิ่มรีวิว
-- [x] Validation
-- [x] อัพเดท rating อัตโนมัติ
-
-### Bonus Features (ถ้ามี)
-- [x] Sort restaurants
-- [x] Responsive design
-- [ ] Animations
-
-## วิธีติดตั้งและรัน
-
-### Backend
-```bash
-cd backend
-npm install
-cp .env.example .env
-npm run dev
-```
-
-### Frontend
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
-## API Endpoints
-- GET `/api/restaurants` - ดึงรายการร้านทั้งหมด
-- GET `/api/restaurants/:id` - ดึงร้านตาม ID
-- POST `/api/reviews` - เพิ่มรีวิว
-- GET `/api/stats` - ดึงสถิติ
-
-## Screenshots
-### หน้าแรก
-<img width="1200" height="800" alt="image" src="https://github.com/user-attachments/assets/94c06768-38f3-4a3d-9227-102fa014c052" />
+**Test Case 1: แสดงรายการร้าน**
+1. เปิด http://localhost:5173
+2. ควรเห็นร้านอาหาร 10 ร้าน
+3. แต่ละการ์ดมีรูป ชื่อ หมวด คำอธิบาย rating
+<img width="400" height="755" alt="image" src="https://github.com/user-attachments/assets/00f5234e-4da1-4176-a643-62553f64dfa1" />
 
 
-### รายละเอียดร้าน
-<img width="1200" height="420" alt="image" src="https://github.com/user-attachments/assets/fd0d1136-b6f4-4f2c-8a2d-f9cad63d6b69" />
+**Test Case 2: ค้นหา**
+1. พิมพ์ "ส้มตำ" ในช่องค้นหา
+2. รอ 0.5 วินาที (debounce)
+3. ควรเห็นแค่ "ส้มตำน้าเข้านอ้ง"
+<img width="1200" height="800" alt="image" src="https://github.com/user-attachments/assets/0a873ae7-96f4-4e08-b0e8-0610cb454045" />
 
 
+**Test Case 3: กรองหมวด**
+1. เลือก "อาหารไทย"
+2. ควรเห็นร้านที่เป็นอาหารไทยเท่านั้น
+<img width="1200" height="800" alt="image" src="https://github.com/user-attachments/assets/3b119765-19bf-4281-be3d-50e178ccb1b9" />
 
-### ฟอร์มรีวิว
-<img width="1137" height="687" alt="image" src="https://github.com/user-attachments/assets/58c386c9-6fcf-44c9-8489-856afcda3d9f" />
+
+**Test Case 4: ดูรายละเอียด**
+1. คลิกที่การ์ดร้านใดก็ได้
+2. ควรเห็นหน้ารายละเอียด พร้อมรูปใหญ่
+3. มีปุ่ม "กลับ"
+<img width="1200" height="800" alt="image" src="https://github.com/user-attachments/assets/3b5a01c6-4d07-4697-89a8-773a62504cbe" />
 
 
-## ผู้พัฒนา
-- ชื่อ: ธนภัทร นุกูล
-- รหัสนักศึกษา: 67543210031-0
-- Email: tanapat_nu6@live.rmutl.ac.th
+**Test Case 5: เพิ่มรีวิว**
+1. ในหน้ารายละเอียด กรอกฟอร์มรีวิว
+2. ชื่อ: "ผู้ทดสอบ"
+3. คะแนน: 5 ดาว
+4. ความคิดเห็น: "ทดสอบระบบ อร่อยมากครับ"
+5. กด "ส่งรีวิว"
+6. ควรเห็นรีวิวใหม่ปรากฏทันที
+7. คะแนนเฉลี่ยควรอัพเดท
+<img width="1200" height="800" alt="image" src="https://github.com/user-attachments/assets/286abb98-b11a-4fe0-bf92-55bfcfd24e3e" />
 
-## License
-MIT License
+
+**Test Case 6: Validation**
+1. พยายามส่งฟอร์มว่างเปล่า → ควรเห็น error
+2. กรอกชื่อแค่ 1 ตัว → error
+3. กรอกความคิดเห็นแค่ 5 ตัว → error
+4. กรอกครบถ้วน → ส่งได้
+<img width="1200" height="800" alt="image" src="https://github.com/user-attachments/assets/27eb625b-6fea-40f7-80d0-d8cd3cc589f1" />
