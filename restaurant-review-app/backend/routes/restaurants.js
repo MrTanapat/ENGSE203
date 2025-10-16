@@ -7,10 +7,10 @@ const { readJsonFile } = require("../utils/fileManager");
 // ========================================
 router.get("/", async (req, res) => {
   try {
-    let restaurants = await readJsonFile("./data/restaurants.json");
+    let restaurants = await readJsonFile("restaurants.json");
     const { search, category, minRating, priceRange } = req.query;
 
-    // ✅ TODO 1: กรองตามชื่อ (search)
+    // ✅ 1. กรองตามชื่อ (search)
     if (search) {
       const searchLower = search.toLowerCase();
       restaurants = restaurants.filter(
@@ -20,7 +20,7 @@ router.get("/", async (req, res) => {
       );
     }
 
-    // ✅ TODO 2: กรองตามหมวดหมู่ (category)
+    // ✅ 2. กรองตามหมวดหมู่ (category)
     if (category) {
       const categoryLower = category.toLowerCase();
       restaurants = restaurants.filter(
@@ -28,7 +28,7 @@ router.get("/", async (req, res) => {
       );
     }
 
-    // ✅ TODO 3: กรองตาม rating ขั้นต่ำ (minRating)
+    // ✅ 3. กรองตาม rating ขั้นต่ำ (minRating)
     if (minRating) {
       const min = parseFloat(minRating);
       restaurants = restaurants.filter(
@@ -36,23 +36,17 @@ router.get("/", async (req, res) => {
       );
     }
 
-    // ✅ TODO 4: กรองตามช่วงราคา (priceRange)
+    // ✅ 4. กรองตามช่วงราคา (priceRange)
     if (priceRange) {
       const price = parseInt(priceRange);
       restaurants = restaurants.filter((r) => parseInt(r.priceRange) === price);
     }
 
-    // ✅ ส่งข้อมูลกลับ
     res.json({
       success: true,
       data: restaurants,
       total: restaurants.length,
-      filters: {
-        search: search || null,
-        category: category || null,
-        minRating: minRating || null,
-        priceRange: priceRange || null,
-      },
+      filters: { search, category, minRating, priceRange },
     });
   } catch (error) {
     console.error("Error fetching restaurants:", error);
@@ -69,12 +63,10 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
+    const restaurants = await readJsonFile("restaurants.json");
+    const reviews = await readJsonFile("reviews.json");
 
-    // ✅ TODO 5: อ่านข้อมูลร้านและรีวิว
-    const restaurants = await readJsonFile("./data/restaurants.json");
-    const reviews = await readJsonFile("./data/reviews.json");
-
-    const restaurant = restaurants.find((r) => r.id === parseInt(id));
+    const restaurant = restaurants.find((r) => parseInt(r.id) === parseInt(id));
     if (!restaurant) {
       return res.status(404).json({
         success: false,
@@ -83,10 +75,9 @@ router.get("/:id", async (req, res) => {
     }
 
     const restaurantReviews = reviews.filter(
-      (r) => r.restaurantId === parseInt(id)
+      (r) => parseInt(r.restaurantId) === parseInt(id)
     );
 
-    // เรียงจากใหม่ → เก่า
     restaurantReviews.sort(
       (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
     );

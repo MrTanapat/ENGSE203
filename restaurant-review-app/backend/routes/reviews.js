@@ -9,14 +9,12 @@ const { validateReview } = require("../middleware/validation");
 router.get("/:restaurantId", async (req, res) => {
   try {
     const { restaurantId } = req.params;
-    const reviews = await readJsonFile("./data/reviews.json");
+    const reviews = await readJsonFile("reviews.json");
 
-    // ✅ TODO 1: กรองรีวิวเฉพาะร้านนี้
     const restaurantReviews = reviews.filter(
       (r) => r.restaurantId === parseInt(restaurantId)
     );
 
-    // ✅ TODO 2: เรียงจากใหม่สุดไปเก่าสุด
     restaurantReviews.sort(
       (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
     );
@@ -42,11 +40,9 @@ router.post("/", validateReview, async (req, res) => {
   try {
     const { restaurantId, userName, rating, comment, visitDate } = req.body;
 
-    // ✅ TODO 3: อ่านข้อมูลปัจจุบัน
-    const reviews = await readJsonFile("./data/reviews.json");
-    const restaurants = await readJsonFile("./data/restaurants.json");
+    const reviews = await readJsonFile("reviews.json");
+    const restaurants = await readJsonFile("restaurants.json");
 
-    // ✅ TODO 4: ตรวจสอบว่า restaurant ID มีอยู่จริงไหม
     const restaurant = restaurants.find((r) => r.id === parseInt(restaurantId));
     if (!restaurant) {
       return res.status(404).json({
@@ -55,7 +51,6 @@ router.post("/", validateReview, async (req, res) => {
       });
     }
 
-    // ✅ TODO 5: สร้างรีวิวใหม่
     const newReview = {
       id: Date.now(),
       restaurantId: parseInt(restaurantId),
@@ -66,11 +61,9 @@ router.post("/", validateReview, async (req, res) => {
       createdAt: new Date().toISOString(),
     };
 
-    // ✅ TODO 6: เพิ่มรีวิวเข้าไปใน array และบันทึก
     reviews.push(newReview);
-    await writeJsonFile("./data/reviews.json", reviews);
+    await writeJsonFile("reviews.json", reviews);
 
-    // ✅ TODO 7: อัพเดท averageRating และ totalReviews ของร้าน
     const restaurantReviews = reviews.filter(
       (r) => r.restaurantId === parseInt(restaurantId)
     );
@@ -80,14 +73,12 @@ router.post("/", validateReview, async (req, res) => {
     const restaurantIndex = restaurants.findIndex(
       (r) => r.id === parseInt(restaurantId)
     );
-
     restaurants[restaurantIndex].averageRating =
       Math.round(newAverageRating * 10) / 10;
     restaurants[restaurantIndex].totalReviews = restaurantReviews.length;
 
-    await writeJsonFile("./data/restaurants.json", restaurants);
+    await writeJsonFile("restaurants.json", restaurants);
 
-    // ✅ TODO 8: ส่งข้อมูลกลับ
     res.status(201).json({
       success: true,
       message: "เพิ่มรีวิวสำเร็จ",
