@@ -22,8 +22,8 @@
     "priceRange": 3,
     "phone": "02-234-5678",
     "image": "https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=800",
-    "averageRating": 0,
-    "totalReviews": 0,
+    "averageRating": 5,
+    "totalReviews": 1,
     "openHours": "11:00-22:00",
     "createdAt": "2024-01-10T10:00:00.000Z"
   },

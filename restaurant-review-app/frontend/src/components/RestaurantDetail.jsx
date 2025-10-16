@@ -1,33 +1,33 @@
-import { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import ReviewList from "./ReviewList";
 import ReviewForm from "./ReviewForm";
 import { getRestaurantById } from "../services/api";
 
 function RestaurantDetail({ restaurantId, onBack }) {
   const [restaurant, setRestaurant] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const fetchRestaurantDetail = useCallback(async () => {
+    setLoading(true);
+    setError(null);
     try {
-      setLoading(true);
-      setError(null);
-
       const result = await getRestaurantById(restaurantId);
       if (result.success) {
         setRestaurant(result.data);
       } else {
         setError(result.message || "ไม่พบข้อมูลร้านอาหาร");
+        setRestaurant(null);
       }
     } catch (err) {
       console.error(err);
-      setError("ไม่สามารถโหลดข้อมูลร้านได้");
+      setError("API ไม่พร้อมหรือเกิดข้อผิดพลาด");
+      setRestaurant(null);
     } finally {
       setLoading(false);
     }
   }, [restaurantId]);
 
-  // fetch ข้อมูลเมื่อ mount หรือ restaurantId เปลี่ยน
   useEffect(() => {
     fetchRestaurantDetail();
   }, [fetchRestaurantDetail]);
