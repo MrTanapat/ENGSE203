@@ -4,6 +4,18 @@ import SearchBar from "./SearchBar";
 import FilterPanel from "./FilterPanel";
 import { getRestaurants } from "../services/api";
 
+// ฟังก์ชัน debounce
+function useDebounce(value, delay) {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+
+  useEffect(() => {
+    const handler = setTimeout(() => setDebouncedValue(value), delay);
+    return () => clearTimeout(handler);
+  }, [value, delay]);
+
+  return debouncedValue;
+}
+
 function RestaurantList({ onSelectRestaurant }) {
   const [restaurants, setRestaurants] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -15,24 +27,28 @@ function RestaurantList({ onSelectRestaurant }) {
     priceRange: "",
   });
 
-  // ใช้ useCallback ป้องกัน fetch function ใหม่ทุก render
-  const fetchRestaurants = useCallback(async () => {
-    setLoading(true);
-    setError(null);
+  const debouncedFilters = useDebounce(filters, 300);
 
+  const fetchRestaurants = useCallback(async () => {
     try {
-      const result = await getRestaurants(filters);
-      setRestaurants(result.data || []);
+      setLoading(true);
+      setError(null);
+
+      const result = await getRestaurants(debouncedFilters);
+      if (result.success) {
+        setRestaurants(result.data);
+      } else {
+        setError(result.message || "ไม่สามารถโหลดข้อมูลได้");
+      }
     } catch (err) {
-      setError("ไม่สามารถโหลดข้อมูลได้ กรุณาลองใหม่อีกครั้ง");
       console.error(err);
-      setRestaurants([]); // ป้องกัน undefined
+      setError("ไม่สามารถโหลดข้อมูลได้ กรุณาลองใหม่อีกครั้ง");
     } finally {
       setLoading(false);
     }
-  }, [filters]);
+  }, [debouncedFilters]);
 
-  // fetch ครั้งแรก และทุกครั้งที่ filters เปลี่ยน
+  // fetch เมื่อ debouncedFilters เปลี่ยน
   useEffect(() => {
     fetchRestaurants();
   }, [fetchRestaurants]);
@@ -57,7 +73,7 @@ function RestaurantList({ onSelectRestaurant }) {
         <>
           {restaurants.length === 0 ? (
             <p className="no-results">
-              ไม่พบร้านอาหารที่ค้นหา ลองเปลี่ยนคำค้นหาหรือตัวกรองดูนะครับ
+              ไม่พบร้านอาหาร ลองเปลี่ยนคำค้นหาหรือตัวกรองดูนะครับ
             </p>
           ) : (
             <div className="restaurant-grid">
@@ -65,7 +81,7 @@ function RestaurantList({ onSelectRestaurant }) {
                 <RestaurantCard
                   key={restaurant.id}
                   restaurant={restaurant}
-                  onClick={onSelectRestaurant}
+                  onClick={() => onSelectRestaurant(restaurant.id)}
                 />
               ))}
             </div>

@@ -8,36 +8,31 @@ function RestaurantDetail({ restaurantId, onBack }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // ใช้ useCallback ป้องกัน function ใหม่ทุก render
   const fetchRestaurantDetail = useCallback(async () => {
-    setLoading(true);
-    setError(null);
-
     try {
-      const result = await getRestaurantById(restaurantId);
+      setLoading(true);
+      setError(null);
 
+      const result = await getRestaurantById(restaurantId);
       if (result.success) {
-        setRestaurant(result.data || null);
+        setRestaurant(result.data);
       } else {
         setError(result.message || "ไม่พบข้อมูลร้านอาหาร");
-        setRestaurant(null);
       }
     } catch (err) {
       console.error(err);
       setError("ไม่สามารถโหลดข้อมูลร้านได้");
-      setRestaurant(null);
     } finally {
       setLoading(false);
     }
   }, [restaurantId]);
 
-  // fetch ครั้งแรก และเมื่อ restaurantId เปลี่ยน
+  // fetch ข้อมูลเมื่อ mount หรือ restaurantId เปลี่ยน
   useEffect(() => {
     fetchRestaurantDetail();
   }, [fetchRestaurantDetail]);
 
   const handleReviewAdded = () => {
-    // Refresh ข้อมูลหลังจากเพิ่มรีวิวใหม่
     fetchRestaurantDetail();
   };
 
