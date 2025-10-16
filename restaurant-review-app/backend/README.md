@@ -62,3 +62,15 @@ curl -X POST http://localhost:3000/api/reviews \
 curl http://localhost:3000/api/stats
 ```
 <img width="1200" height="60" alt="image" src="https://github.com/user-attachments/assets/912aeedf-2e19-489f-89b1-dcbbd2c6b2d3" />
+
+#### ใช้ Postman
+
+สร้าง Collection ชื่อ "Restaurant Review API" และเพิ่ม requests ต่อไปนี้:
+
+**GET** `http://localhost:3000/api/restaurants` <br>
+**GET** `http://localhost:3000/api/restaurants/1` <br>
+**GET** `http://localhost:3000/api/restaurants?search=ส้มตำ&category=อาหารไทย` <br>
+**POST** `http://localhost:3000/api/reviews` (พร้อม JSON body) <br>
+**GET** `http://localhost:3000/api/stats` <br>
+
+---
