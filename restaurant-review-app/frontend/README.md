@@ -1,16 +1,69 @@
-# React + Vite
+# Restaurant Review Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## รายละเอียดโปรเจค
+เว็บไซต์สำหรับค้นหาและรีวิวร้านอาหาร ผู้ใช้สามารถดูรายการร้าน, ค้นหา, กรอง, ดูรายละเอียดร้าน และเพิ่มรีวิวได้แบบเรียลไทม์
 
-Currently, two official plugins are available:
+## เทคโนโลยีที่ใช้
+- Frontend: React 18 + Vite
+- Backend: Node.js + Express
+- Database: JSON File Storage
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features ที่ทำได้
+### Required Features (70 คะแนน)
+- [x] แสดงรายการร้านอาหาร
+- [x] ค้นหาร้าน
+- [x] กรองตามหมวด/rating/ราคา
+- [x] ดูรายละเอียดร้าน
+- [x] เพิ่มรีวิว
+- [x] Validation
+- [x] อัพเดท rating อัตโนมัติ
 
-## React Compiler
+### Bonus Features (ถ้ามี)
+- [x] Sort restaurants
+- [x] Responsive design
+- [ ] Animations
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## วิธีติดตั้งและรัน
 
-## Expanding the ESLint configuration
+### Backend
+\`\`\`bash
+cd backend
+npm install
+cp .env.example .env
+npm run dev
+\`\`\`
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Frontend
+\`\`\`bash
+cd frontend
+npm install
+npm run dev
+\`\`\`
+
+## API Endpoints
+- GET `/api/restaurants` - ดึงรายการร้านทั้งหมด
+- GET `/api/restaurants/:id` - ดึงร้านตาม ID
+- POST `/api/reviews` - เพิ่มรีวิว
+- GET `/api/stats` - ดึงสถิติ
+
+## Screenshots
+### หน้าแรก
+<img width="1200" height="800" alt="image" src="https://github.com/user-attachments/assets/94c06768-38f3-4a3d-9227-102fa014c052" />
+
+
+### รายละเอียดร้าน
+<img width="1200" height="420" alt="image" src="https://github.com/user-attachments/assets/fd0d1136-b6f4-4f2c-8a2d-f9cad63d6b69" />
+
+
+
+### ฟอร์มรีวิว
+<img width="1137" height="687" alt="image" src="https://github.com/user-attachments/assets/58c386c9-6fcf-44c9-8489-856afcda3d9f" />
+
+
+## ผู้พัฒนา
+- ชื่อ: ธนภัทร นุกูล
+- รหัสนักศึกษา: 67543210031-0
+- Email: tanapat_nu6@live.rmutl.ac.th
+
+## License
+MIT License
